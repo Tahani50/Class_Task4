@@ -1,0 +1,31 @@
+@model List<TechJobPortal.Models.JobListing>
+
+<h2>Job Listings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Posted On</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.CompanyName</td>
+                <td>@job.Location</td>
+                <td>@job.PostedDate.ToString("MMM dd, yyyy")</td>
+                <td>
+                    <a class="btn btn-outline-secondary" href="@Url.Action("Details", "Job", new { id = job.Id })">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

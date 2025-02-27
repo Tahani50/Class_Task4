@@ -1,0 +1,26 @@
+@model TechJobPortal.Models.JobListing
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<h2>Job Details</h2>
+
+<div class="card p-3">
+    <h3>@Model.Title</h3>
+    <p><strong>Company:</strong> @Model.CompanyName</p>
+    <p><strong>Location:</strong> @Model.Location</p>
+    <p><strong>Posted On:</strong> @Model.PostedDate.ToString("MMM dd, yyyy")</p>
+
+    <form method="post">
+        <label for="jobType"><strong>Job Type:</strong></label>
+        <select id="jobType" name="jobType" class="form-select">
+            @if (ViewBag.JobTypeList != null)
+            {
+                foreach (var jobType in (List<SelectListItem>)ViewBag.JobTypeList)
+                {
+                    <option value="@jobType.Value" selected="@(Model.JobType.ToString() == jobType.Value ? "selected" : null)">
+                        @jobType.Text
+                    </option>
+                }
+            }
+        </select>
+    </form>
+</div>
